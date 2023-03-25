@@ -17,19 +17,30 @@ language_translator.set_service_url(url)
 
 
 def english_to_french(english_text):
-    
-    translation = language_translator.translate(
-        text=english_text,
-        model_id='en-fr').get_result()
+    """
+    Translates from english to french using WATSON AI
+    """
+    if english_text:
+        translation = language_translator.translate(
+            text=english_text,
+            model_id='en-fr').get_result()
 
-    french_text=translation["translations"][0]["translation"]
+        french_text=translation.get("translations")[0].get("translation")
+    else:
+        french_text = "Please provide input text..."
     return french_text
 
 def french_to_english(french_text):
-    translation = language_translator.translate(
-        text=french_text,
-        model_id='fr-en').get_result()
+    """
+    Translates from french to english using WATSON AI
+    """
+    if french_text:
+        translation = language_translator.translate(
+            text=french_text,
+            model_id='fr-en').get_result()
 
-    english_text=translation["translations"][0]["translation"]
+        english_text=translation.get("translations")[0].get("translation")
+    else:
+        english_text = "Please provide input text..."
     return english_text
 
